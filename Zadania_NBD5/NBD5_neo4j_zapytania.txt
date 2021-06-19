@@ -1,0 +1,40 @@
+1. MATCH (movie:Movie) return movie
+
+2. MATCH (hugo:Person {name: "Hugo Weaving"})-[ACTED_IN]->(hugoWeavingMovies) RETURN hugo,hugoWeavingMovies
+
+3. MATCH (hugo:Person {name: "Hugo Weaving"})-[:ACTED_IN]->(hugoWeavingMovies)<-[:DIRECTED]-(director) RETURN hugo,hugoWeavingMovies,director
+
+4. MATCH (hugo:Person {name: "Hugo Weaving"})-[:ACTED_IN]->(hugoWeavingMovies)<-[:ACTED_IN]-(coactor:Person) RETURN hugo,hugoWeavingMovies,coactor
+
+5. MATCH (matrix:Movie {title: "The Matrix"})<-[:ACTED_IN]-(actors:Person)-[:ACTED_IN]->(movies:Movie) RETURN matrix,actors,movies
+
+6. MATCH (actor:Person)-[:ACTED_IN]->(movie:Movie) WITH actor, COUNT(movie) AS movieCount WHERE movieCount > 0 RETURN actor,movieCount
+
+7. MATCH (person:Person)-[:DIRECTED]->(movie:Movie), (person)-[:WROTE]->(movie) RETURN person,movie
+
+8. MATCH (keanuR:Person{name: 'Keanu Reeves'})-[:ACTED_IN]->(movie:Movie)<-[:ACTED_IN]-(hugoW:Person{name: 'Hugo Weaving'}) RETURN keanuR,movie,hugoW
+
+9. 
+	1. Dodanie filmu
+	CREATE (CptAmerica:Movie {title:'Captain America: The First Avenger', released:2011, tagline:'Steve Rogers, a rejected military soldier, transforms into Captain America after taking a dose of a "Super-Soldier serum". But being Captain America comes at a price as he attempts to take down a war monger and a terrorist organization.'})
+	CREATE (ChrisEv:Person {name:'Chris Evans', born:1981})
+	CREATE (SamuelLMFJ:Person {name:'Samuel L. Jackson', born:1948})
+	CREATE (SebaStan:Person {name:'Sebastian Stan', born:1982})
+	CREATE (HayleyAt:Person {name:'Hayley Atwell', born:1982})
+	CREATE (JoeJohn:Person {name:'Joe Johnston', born:1950})
+	CREATE (ChrisMark:Person {name:'Christopher Markus', born:1970})
+	CREATE (KevinFe:Person {name:'Kevin Feige', born:1973})
+	CREATE
+	(ChrisEv)-[:ACTED_IN {roles:['Captain America']}]->(CptAmerica),
+	(SamuelLMFJ)-[:ACTED_IN {roles:['Nick Fury']}]->(CptAmerica),
+	(SebaStan)-[:ACTED_IN {roles:['Bucky']}]->(CptAmerica),
+	(HayleyAt)-[:ACTED_IN {roles:['Peggy Carter']}]->(CptAmerica),
+	(JoeJohn)-[:DIRECTED]->(CptAmerica),
+	(ChrisMark)-[:WROTE]->(CptAmerica),
+	(KevinFe)-[:PRODUCED]->(CptAmerica)
+
+	2. Dodanie roli Hugo
+	MATCH (movie:Movie),(hugo:Person) WHERE movie.title="Captain America: The First Avenger" AND hugo.name="Hugo Weaving" CREATE (hugo)-[:ACTED_IN {roles:["Johann Schmidt"]}]->(movie)
+
+	3. Zapytanie końcowe
+	MATCH (movie:Movie {title: 'Captain America: The First Avenger'})<-[*]-(castcrew:Person) RETURN movie, castcrew

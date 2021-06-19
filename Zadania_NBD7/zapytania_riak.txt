@@ -1,0 +1,36 @@
+1.
+curl -i -XPUT -H "Content-Type:application/json" -d '{"anime": "Naruto", "type": "shounen", "episodes": 722, "rating": 8.5}' http://0.0.0.0:8098/buckets/s23868/keys/Naruto
+curl -i -XPUT -H "Content-Type:application/json" -d '{"anime": "Bleach", "type": "shounen", "episodes": 366, "rating": 9.2}' http://0.0.0.0:8098/buckets/s23868/keys/Bleach
+curl -i -XPUT -H "Content-Type:application/json" -d '{"anime": "HunterxHunter", "type": "shounen", "episodes": 148, "rating": 9.1}' http://0.0.0.0:8098/buckets/s23868/keys/HxH
+curl -i -XPUT -H "Content-Type:application/json" -d '{"anime": "Gintama", "type": "comedy", "episodes": 333, "rating": 9.2}' http://0.0.0.0:8098/buckets/s23868/keys/Gintama
+curl -i -XPUT -H "Content-Type:application/json" -d '{"anime": "Kimi_no_na_ha", "type": "movie", "episodes": 1, "rating": 9.4}' http://0.0.0.0:8098/buckets/s23868/keys/Kimi
+
+2.
+curl -i http://0.0.0.0:8098/buckets/s23868/keys/HxH
+
+3.
+curl -i -XPUT -H "Content-Type:application/json" -d '{"anime": "Kimi_no_na_ha", "type": "movie", "secondarygenre": "romance", "episodes": 1, "rating": 9.4}' http://0.0.0.0:8098/buckets/s23868/keys/Kimi
+
+4.
+curl -i -XPUT -H "Content-Type:application/json" -d '{"anime": "Kimi_no_na_ha", "secondarygenre": "romance", "episodes": 1, "rating": 9.4}' http://0.0.0.0:8098/buckets/s23868/keys/Kimi
+
+5.
+curl -i -XPUT -H "Content-Type:application/json" -d '{"anime": "Bleach", "type": "shounen", "episodes": 366, "rating": 9.99}' http://0.0.0.0:8098/buckets/s23868/keys/Bleach
+
+6.
+curl -i -XDELETE http://0.0.0.0:8098/buckets/s23868/keys/Naruto
+
+7.
+curl -i http://0.0.0.0:8098/buckets/s23868/keys/Naruto
+
+8.
+curl -i -XPOST -H "Content-Type:application/json" -d '{"keyy":"none"}' http://0.0.0.0:8098/buckets/s23868/keys
+
+9.
+curl -i http://0.0.0.0:8098/buckets/s23868/keys/4cqQv9PAVS1hMVUmPQqFDqxFZhe
+
+10.
+curl -i -XDELETE http://0.0.0.0:8098/buckets/s23868/keys/4cqQv9PAVS1hMVUmPQqFDqxFZhe
+
+
+

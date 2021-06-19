@@ -1,0 +1,15 @@
+MongoDB shell version v4.4.6
+connecting to: mongodb://127.0.0.1:27017/nbd?compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("2780fb89-b907-4c88-9548-c74cece12bc9") }
+MongoDB server version: 4.4.6
+uncaught exception: Error: map reduce failed:{
+	"ok" : 0,
+	"errmsg" : "BSON field 'MapReduce.finFunction' is an unknown field.",
+	"code" : 40415,
+	"codeName" : "Location40415"
+} :
+_getErrorWithCode@src/mongo/shell/utils.js:25:13
+DBCollection.prototype.mapReduce@src/mongo/shell/collection.js:1093:15
+@zapytanie_5_MR.js:26:11
+failed to load: zapytanie_5_MR.js
+exiting with code -3
